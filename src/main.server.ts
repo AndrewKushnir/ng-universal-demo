@@ -8,12 +8,17 @@
 import '@angular/platform-server/init';
 
 import { enableProdMode } from '@angular/core';
+import { serverRenderApplication } from '@nguniversal';
 
+import { AppComponent } from './app/app.component';
 import { environment } from './environments/environment';
 
 if (environment.production) {
   enableProdMode();
 }
 
-export { AppServerModule } from './app/app.server.module';
-export { renderModule } from '@angular/platform-server';
+export default serverRenderApplication(RootComponent, {
+  appId: 'my-app-id',
+  providers: [],
+  platformProviders: [],
+});
